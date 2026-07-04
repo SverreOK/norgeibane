@@ -1,0 +1,18 @@
+{
+  "name": "norgeibane",
+  "version": "1.0.0",
+  "description": "norgeibane.no — sanntids 3D-globus som sporer norske satellitter i bane / real-time 3D globe tracking Norwegian satellites",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/vendor.mjs",
+    "snapshot": "node scripts/snapshot.mjs",
+    "dev": "serve -l 8080 .",
+    "proxy": "node proxy/proxy.mjs"
+  },
+  "devDependencies": {
+    "cesium": "1.143.0",
+    "satellite.js": "6.0.2",
+    "serve": "^14.2.4"
+  }
+}

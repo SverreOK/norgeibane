@@ -1,0 +1,4 @@
+node_modules/
+vendor/
+js/config.js
+.DS_Store

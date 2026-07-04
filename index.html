@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Norge i bane — norske satellitter i sanntid</title>
+  <meta name="description" content="Sanntids 3D-globus som viser norske satellitter i bane, med nøyaktige SGP4-baner fra ferske TLE-data. / Real-time 3D globe tracking Norwegian satellites." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='34' fill='%2300205b'/><circle cx='50' cy='50' r='34' fill='none' stroke='%23ef2b2d' stroke-width='6'/><circle cx='79' cy='31' r='9' fill='%23e8f1f8'/></svg>" />
+  <link rel="stylesheet" href="vendor/cesium/Widgets/widgets.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="globe"></div>
+
+  <header id="hud">
+    <div class="hud-left">
+      <h1 class="hud-title">
+        Norge i bane
+        <svg class="hud-flag" viewBox="0 0 22 16" aria-label="Norsk flagg" role="img">
+          <rect width="22" height="16" fill="#ba0c2f"/>
+          <rect x="6" width="4" height="16" fill="#fff"/>
+          <rect y="6" width="22" height="4" fill="#fff"/>
+          <rect x="7" width="2" height="16" fill="#00205b"/>
+          <rect y="7" width="22" height="2" fill="#00205b"/>
+        </svg>
+      </h1>
+      <p class="hud-subtitle">Norske satellitter i sanntid</p>
+    </div>
+    <div class="hud-right">
+      <span id="utc-clock" class="hud-chip">--:--:-- UTC</span>
+      <span id="sat-count" class="hud-chip">—</span>
+      <span class="lang-switch">
+        <button class="lang-btn" data-lang="no" aria-label="Norsk">NO</button><!--
+     --><button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      </span>
+    </div>
+  </header>
+
+  <div id="hud-status" role="status"></div>
+
+  <aside id="sat-list">
+    <div class="list-header">
+      <span class="list-title">Satellitter</span>
+    </div>
+    <div class="list-body"></div>
+  </aside>
+
+  <button id="list-toggle" aria-label="Satellitter">
+    <svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true">
+      <path d="M1.5 3h12M1.5 7.5h12M1.5 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <a id="coffee" href="https://buymeacoffee.com/" target="_blank" rel="noopener">
+    <span class="coffee-cup" aria-hidden="true">☕</span><span class="coffee-text">Spander en kaffe</span>
+  </a>
+
+  <aside id="settings">
+    <label class="toggle" for="toggle-orbits">
+      <input type="checkbox" id="toggle-orbits" />
+      <span>Vis alle baner</span>
+    </label>
+    <label class="toggle" for="toggle-inactive">
+      <input type="checkbox" id="toggle-inactive" />
+      <span>Inkluder inaktive</span>
+    </label>
+    <label class="toggle" for="toggle-stations">
+      <input type="checkbox" id="toggle-stations" checked />
+      <span>Bakkestasjoner</span>
+    </label>
+  </aside>
+
+  <div id="time-control" role="group" aria-label="Tid">
+    <button class="time-btn active" data-speed="1">1×</button>
+    <button class="time-btn" data-speed="60">60×</button>
+    <button class="time-btn" data-speed="600">600×</button>
+    <button class="time-btn time-now" data-now>NÅ</button>
+  </div>
+
+  <aside id="info-panel" aria-live="polite">
+    <button class="panel-close" aria-label="Lukk">×</button>
+    <div class="panel-type"></div>
+    <h2 class="panel-title"></h2>
+    <p class="panel-subtitle"></p>
+    <div class="panel-static"></div>
+  </aside>
+
+  <div id="loading">
+    <div class="loading-mark"></div>
+    <p class="loading-text">Laster jordkloden …</p>
+  </div>
+
+  <!-- Vendored libraries (no CDN at runtime). Cesium self-detects its asset
+       base URL from the script path; satellite.js v6 UMD exposes `satellite`. -->
+  <script src="vendor/cesium/Cesium.js"></script>
+  <script src="vendor/satellite.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
